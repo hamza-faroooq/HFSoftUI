@@ -74,7 +74,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
      
         DispatchQueue.main.async {
             
-            cell.cellOuterView.HFSoftUIView(backgroundColorValue: HFSoftUIColor)
+            cell.cellOuterView.HFSoftUIView(backgroundColorValue: HFSoftUIColor, isDarkColorScheme: isDarkColorScheme, isUpperWhiteRequired: isUpperWhiteRequired)
             
         }
         
