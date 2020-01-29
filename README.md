@@ -66,7 +66,7 @@ override func viewDidAppear(_ animated: Bool) {
     }
 ```
 
-This will create light color scheme Neumorphic Effect as shown in [First Screen Shot](https://github.com/hamza-faroooq/HFSoftUI/blob/master/LightColorSchemeScreenShot.png)
+This will create light color scheme Neumorphic Effect as shown in [First Screen Shot](ScreenShots/LightColorSchemeScreenShot1.png)
 
 NOTE: You have to write this in viewDidAppear rather than [viewDidLoad()](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621495-viewdidload) or [viewWillAppear()](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621510-viewwillappear) because the extension uses view's frame to apply shadow, and that frame is not yet known at the time of viewDidLoad and viewWillAppear. So its better to use viewDidAppear.
 
