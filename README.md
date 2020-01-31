@@ -53,30 +53,64 @@ myButton.HFSoftUIButton(backgroundColorValue: HFSoftUIColor)
 
 And that's it. Your eyes will witness a nice Neumorphic Effect, (Well... Maybe not yet. :-D). Let's dive deeper to get things working.
 
-First thing to keep in mind that your color scheme must matches for the Neumorphic Effect to appear properly on your mobile screen. secondly, add the above line of code in your controller's [viewDidAppear()](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621423-viewdidappear) as:
+First thing to keep in mind that your color scheme must matches for the Neumorphic Effect to appear properly on your mobile screen. secondly, add the above line of code in your controller's [viewDidAppear()](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621423-viewdidappear) (if and only if you are not creating the view by programmatic approach. If you create a UIView or UIButton programmatically, then you use HFSoftUI anywhere for that view or Button after setting their frame - I suppose... :-D) as:
 
 ```swift
 override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.view.backgroundColor = HFSoftUIColor
+        self.view.backgroundColor = HFSoftUIColor // changing background color also to match the color scheme
         myView.HFSoftUIView(backgroundColorValue: HFSoftUIColor)
         myButton.HFSoftUIButton(backgroundColorValue: HFSoftUIColor)
         
     }
 ```
 
-This will create light color scheme Neumorphic Effect as shown in [First Screen Shot](ScreenShots/LightColorSchemeScreenShot1.png)
+This will create light color scheme Neumorphic Effect similar to the one showing in [First Screen Shot](ScreenShots/LightColorSchemeScreenShot1.png)
 
-NOTE: You have to write this in viewDidAppear rather than [viewDidLoad()](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621495-viewdidload) or [viewWillAppear()](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621510-viewwillappear) because the extension uses view's frame to apply shadow, and that frame is not yet known at the time of viewDidLoad and viewWillAppear. So its better to use viewDidAppear.
+NOTE: Again, you have to write this in viewDidAppear rather than [viewDidLoad()](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621495-viewdidload) or [viewWillAppear()](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621510-viewwillappear) because the extension uses one's frame to form this effect, and that frame is not yet known at the time of viewDidLoad and viewWillAppear if that view or button is not created progmmatically. So its better to use viewDidAppear.
 
 ## Advance Usage
 
-You can use HFSoftUI for [TableView](https://developer.apple.com/documentation/uikit/uitableview) as well as [CollectionView](https://developer.apple.com/documentation/uikit/uicollectionview). The word 'Advance' is just to scare you. Just write below lines of code in your [cellForRowAt](https://developer.apple.com/documentation/uikit/uitableviewdatasource/1614861-tableview) for TableView and [cellForItemAt](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource/1618029-collectionview) for CollectionView:
+* You can use HFSoftUI for [TableView](https://developer.apple.com/documentation/uikit/uitableview) as well as [CollectionView](https://developer.apple.com/documentation/uikit/uicollectionview). The word 'Advance' is just to scare you. Just write below lines of code in your [cellForRowAt](https://developer.apple.com/documentation/uikit/uitableviewdatasource/1614861-tableview) for TableView and [cellForItemAt](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource/1618029-collectionview) for CollectionView:
 
 ```swift
 DispatchQueue.main.async {
                cell.myView.HFSoftUIView(backgroundColorValue: HFSoftUIColor)
+        }
+```
+
+* You can also use HFSoftUI for nested views as well. This will make a very nice and soft touching UI that will surely catches your eye)
+
+![](ScreenShots/nestedOutwardsEffectDark.png)
+
+```swift
+DispatchQueue.main.async {
+        
+            cell.cellImageView.layer.cornerRadius = 4
+            
+            cell.cellOuterView.HFSoftUIView(backgroundColorValue: HFSoftUIColor, isDarkColorScheme: isDarkColorScheme, isUpperWhiteRequired: isUpperWhiteRequired)
+            cell.cellImageOuterView.HFSoftUIView(backgroundColorValue: HFSoftUIColor, isDarkColorScheme: isDarkColorScheme, isUpperWhiteRequired: isUpperWhiteRequired)
+            
+            cell.acceptButtonOutlet.HFSoftUIButton(backgroundColorValue: HFSoftUIColor, isDarkColorScheme: isDarkColorScheme, isUpperWhiteRequired: isUpperWhiteRequired)
+            cell.rejectButtonOutlet.HFSoftUIButton(backgroundColorValue: HFSoftUIColor, isDarkColorScheme: isDarkColorScheme, isUpperWhiteRequired: isUpperWhiteRequired)
+            
+        }
+```
+
+![](ScreenShots/nestedOutwardsEffectRoundedDark.png)
+
+```swift
+DispatchQueue.main.async {
+               
+            cell.cellImageView.layer.cornerRadius = cell.cellImageView.frame.height / 2
+            
+            cell.cellOuterView.HFSoftUIView(backgroundColorValue: HFSoftUIColor, isDarkColorScheme: isDarkColorScheme, isUpperWhiteRequired: isUpperWhiteRequired)
+            cell.cellImageOuterView.HFSoftUIView(backgroundColorValue: HFSoftUIColor, cornerRadiusValue: cell.cellImageOuterView.frame.height / 2, isDarkColorScheme: isDarkColorScheme, isUpperWhiteRequired: isUpperWhiteRequired)
+            
+            cell.acceptButtonOutlet.HFSoftUIButton(backgroundColorValue: HFSoftUIColor, cornerRadiusValue: cell.acceptButtonOutlet.frame.height / 2, isDarkColorScheme: isDarkColorScheme, isUpperWhiteRequired: isUpperWhiteRequired)
+            cell.rejectButtonOutlet.HFSoftUIButton(backgroundColorValue: HFSoftUIColor, cornerRadiusValue: cell.rejectButtonOutlet.frame.height / 2, isDarkColorScheme: isDarkColorScheme, isUpperWhiteRequired: isUpperWhiteRequired)
+            
         }
 ```
 
