@@ -44,9 +44,17 @@ extension UIButton {
         self.layer.cornerRadius = cornerRadiusValue
         self.isMultipleTouchEnabled = false
         
+        // removing all sublayers that are already created
+        if self.layer.sublayers?.count != 0 {
+            self.layer.sublayers = self.layer.sublayers?.filter({
+                return ($0.name != "0" && $0.name != "1")
+            })
+        }
+        
         // applying shadow on button
         for (index, item) in layersArrayForUIButton.enumerated() {
 
+            item.name = "\(index)"
             item.frame = self.layer.bounds
             item.cornerRadius = cornerRadiusValue
             item.backgroundColor = backgroundColorValue.cgColor
@@ -88,9 +96,17 @@ extension UIView {
         
         self.layer.cornerRadius = cornerRadiusValue
         
+        // removing all sublayers that are already created
+        if self.layer.sublayers?.count != 0 {
+            self.layer.sublayers = self.layer.sublayers?.filter({
+                return ($0.name != "0" && $0.name != "1")
+            })
+        }
+        
         // applying shadow on view
         for (index, item) in layersArrayForUIView.enumerated() {
 
+            item.name = "\(index)"
             item.frame = self.layer.bounds
             item.cornerRadius = cornerRadiusValue
             item.backgroundColor = backgroundColorValue.cgColor
@@ -112,7 +128,7 @@ extension UIButton {
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
-        if self.layer.sublayers?.count != 1 {
+        if self.layer.sublayers?.count != 1 && self.layer.sublayers?.count != nil {
          
             swap(&self.layer.sublayers![0].shadowOffset, &self.layer.sublayers![1].shadowOffset)
             
@@ -123,7 +139,7 @@ extension UIButton {
     open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
-        if self.layer.sublayers?.count != 1 {
+        if self.layer.sublayers?.count != 1 && self.layer.sublayers?.count != nil {
          
             swap(&self.layer.sublayers![0].shadowOffset, &self.layer.sublayers![1].shadowOffset)
             
