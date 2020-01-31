@@ -128,23 +128,32 @@ extension UIButton {
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
-        if self.layer.sublayers?.count != 1 && self.layer.sublayers?.count != nil {
-         
-            swap(&self.layer.sublayers![0].shadowOffset, &self.layer.sublayers![1].shadowOffset)
-            
-        }
+        swapEffect()
         
     }
     
     open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
+        swapEffect()
+
+    }
+    
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        
+        swapEffect()
+        
+    }
+    
+    private func swapEffect() {
+        
         if self.layer.sublayers?.count != 1 && self.layer.sublayers?.count != nil {
          
             swap(&self.layer.sublayers![0].shadowOffset, &self.layer.sublayers![1].shadowOffset)
             
         }
-
+        
     }
     
 }
