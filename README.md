@@ -8,13 +8,15 @@ My name is Hamza Farooq and I love 'Swift' programming. I always try to implemen
 
 A simple and short extension for Neumorphic Effect in Swift (also know as SoftUI). Try this new effect in your projects and enhance the UI experience.
 
-### Light Color Scheme
-![](ScreenShots/LightColorSchemeScreenShot1.png)
-![](ScreenShots/LightColorSchemeScreenShot2.png)
+### Gifs
+![](ScreenShots/Requests-Screen-Recording.gif)
+![](ScreenShots/EdirTrainerProfileScreenTrimmed.gif)
 
-### Dark Color Scheme
-![](ScreenShots/DarkColorSchemeScreenShot1.png)
-![](ScreenShots/DarkColorSchemeScreenShot2.png)
+### Images
+![](ScreenShots/GallaryMix.JPG)
+![](ScreenShots/ProfileMix.JPG)
+![](ScreenShots/NewWorkoutLight.JPG)
+![](ScreenShots/NewWorkoutDark.JPG)
 
 ## Example
 
@@ -82,7 +84,7 @@ DispatchQueue.main.async {
 
 * You can also use HFSoftUI for nested views as well. This will make a very nice and soft touching UI that will surely catches your eye)
 
-![](ScreenShots/nestedOutwardsEffectDark.png)
+![](ScreenShots/NestedOutwardsEffectLight.png)
 
 ```swift
 DispatchQueue.main.async {
@@ -98,7 +100,7 @@ DispatchQueue.main.async {
         }
 ```
 
-![](ScreenShots/nestedOutwardsEffectRoundedDark.png)
+![](ScreenShots/NestedOutwardsEffectRoundedDark.png)
 
 ```swift
 DispatchQueue.main.async {
